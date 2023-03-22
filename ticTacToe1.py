@@ -21,6 +21,16 @@ for row in range(3):
         pygame.draw.rect(BOARD, (0,0,0), (x, y, square_size, square_size))
 
 pygame.display.update()
+xImage= pygame.image.load('x.png')
+oImage = pygame.image.load('o.png')
+
+#need to resize the image to fit the square 
+xImage= pygame.transform.scale(xImage, (133,133))
+oImage = pygame.transform.scale(oImage, (133, 133))
+
+BOARD.blit(oImage, (0,0))
+BOARD.blit(xImage, (0,0))
+pygame.display.update()
 
 def main():
 
@@ -31,6 +41,15 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT: 
                 run = False
+def chooseSymbol():
+    #create the two symbols
+    #ask the user to decide which symbol they want
+    #assign that symbol to the user and assign the other symbol to the computer
+    xImage= pygame.image.load('x.png')
+    oImage = pygame.image.load('o.png')
+    BOARD.blit(oImage, (0,0))
+    BOARD.blit(xImage, (0,0))
+
 
 if __name__ == "__main__":
     main()
