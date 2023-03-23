@@ -31,17 +31,8 @@ def createBoard():
     pygame.display.flip()
 #pygame.display.update()
 #creating the images
-createBoard()
-xImage= pygame.image.load('x.png')
-oImage = pygame.image.load('o.png')
 
-#need to resize the image to fit the square 
-xImage= pygame.transform.scale(xImage, (133,133))
-oImage = pygame.transform.scale(oImage, (133, 133))
 
-BOARD.blit(oImage, (0,0))
-BOARD.blit(xImage, (0,0))
-pygame.display.update()
 
 
 
@@ -60,6 +51,7 @@ def chooseSymbol():
     #assign that symbol to the user and assign the other symbol to the computer
     xImage= pygame.image.load('x.png')
     oImage = pygame.image.load('o.png')
+    #resizing the image to fit the board
     xImage= pygame.transform.scale(xImage, (133,133))
     oImage = pygame.transform.scale(oImage, (133, 133))
     BOARD.blit(oImage, (0,0))
@@ -71,7 +63,7 @@ def chooseSymbol():
     #what is the condition for a user to be X or a user to be O? 
     #each time they click on the board then you would fill the board with whatever they picked
 
-def userTurn():
+def promptUserTurn():
     #here you will want to ask the user to make a move
     #wherever the user clicks on the board then you will fill 
     #it in with an X or an O 
@@ -87,17 +79,17 @@ def userTurn():
     message_rect.center = (WIDTH //2 , HEIGHT//2)
     BOARD.blit(message_surface, message_rect)
     pygame.display.flip()
+    #This code ensures that we do not reset the board until the user clicks
     waiting= True
     while waiting: 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 waiting= False
+    #fill removes the message from the board
     BOARD.fill((bg_color))
     pygame.display.flip()
+    #Then I call the function that creates the board to reset the board
     createBoard()
-    #pygame.draw.rect(BOARD, (0, 0, 0), message_rect)
-    #pygame.draw.rect(BOARD, (0,0,0), (x, y, square_size, square_size))
-    #pygame.display.flip()
 #def userClicks():
     #run this function after showing the message to prompt the user to click 
     #use chatGPT to figure out how to record a click
@@ -105,6 +97,42 @@ def userTurn():
 
     #now I need to figure out where the user clicks
 
+def userTurn():
+#there are 9 possibel coordinate areas for a user to click on(each box)
+#each box has a width of 
+    running2= True
+    while running2:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                # Get the position where the mouse was clicked
+                pos = pygame.mouse.get_pos()
+                print("Clicked at:", pos)
+                #now 9 if else conditions for the square clicked on
+                if pos < (138.33, 138.33):
+                    print("it executed")
+                    xImage= pygame.image.load('x.png')
+                    xImage= pygame.transform.scale(xImage, (133,133))
+                    BOARD.blit(xImage, (0,0))
+                    pygame.display.flip()
+                elif pos < (276.66, 138.33):
+                    print("it executed")
+                    xImage= pygame.image.load('x.png')
+                    xImage= pygame.transform.scale(xImage, (133,133))
+                    BOARD.blit(xImage, (138.33,0))
+                    pygame.display.flip()
+           
+
+
+
+        
+
+#pos keeps track of where the user clicked. If it is first quadrant it will be less than 
+#each square has a width of 138.33 so that tells you which quadrant it is in. 
+
+createBoard()
+promptUserTurn()
 userTurn()
 
 if __name__ == "__main__":
