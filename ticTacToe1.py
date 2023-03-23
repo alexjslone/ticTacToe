@@ -54,12 +54,17 @@ def chooseSymbol():
     #resizing the image to fit the board
     xImage= pygame.transform.scale(xImage, (133,133))
     oImage = pygame.transform.scale(oImage, (133, 133))
-    BOARD.blit(oImage, (0,0))
-    BOARD.blit(xImage, (0,0))
+    #BOARD.blit(oImage, (0,0))
+    #BOARD.blit(xImage, (0,0))
 
     #now I need to figure out how to assign a value to a user 
     #ask the user to pick either x or o 
-    userSymbol = input("if you would like to be X please respond X, otherwise respond O")
+    USERSYMBOL = input("if you would like to be X please respond X, otherwise respond O:  ")
+    if USERSYMBOL == 'x':
+        return xImage
+    else: 
+        return oImage
+
     #what is the condition for a user to be X or a user to be O? 
     #each time they click on the board then you would fill the board with whatever they picked
 
@@ -100,8 +105,9 @@ def promptUserTurn():
 def userTurn():
 #there are 9 possibel coordinate areas for a user to click on(each box)
 #each box has a width of 
-    running2= True
-    while running2:
+    USERSYMBOL = chooseSymbol()
+    run= True
+    while run:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
@@ -118,9 +124,9 @@ def userTurn():
                     pygame.display.flip()
                 elif pos < (276.66, 138.33):
                     print("it executed")
-                    xImage= pygame.image.load('x.png')
-                    xImage= pygame.transform.scale(xImage, (133,133))
-                    BOARD.blit(xImage, (138.33,0))
+                    #xImage= pygame.image.load('x.png')
+                    #xImage= pygame.transform.scale(xImage, (133,133))
+                    BOARD.blit(USERSYMBOL, (138.33,0))
                     pygame.display.flip()
            
 
