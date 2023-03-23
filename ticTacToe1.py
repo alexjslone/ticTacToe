@@ -20,17 +20,18 @@ bg_color = (255, 255, 255)
 BOARD.fill(bg_color)
 
 #create the grid
-
-for row in range(3):
-    for col in range(3):
-        x= col * (square_size+spacing)
-        y = row * (square_size + spacing)
+def createBoard():
+    for row in range(3):
+        for col in range(3):
+            x= col * (square_size+spacing)
+            y = row * (square_size + spacing)
 
         #now drawing the square 
-        pygame.draw.rect(BOARD, (0,0,0), (x, y, square_size, square_size))
-        pygame.display.update()
+            pygame.draw.rect(BOARD, (0,0,0), (x, y, square_size, square_size))
+    pygame.display.flip()
 #pygame.display.update()
 #creating the images
+createBoard()
 xImage= pygame.image.load('x.png')
 oImage = pygame.image.load('o.png')
 
@@ -91,9 +92,12 @@ def userTurn():
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 waiting= False
-    pygame.draw.rect(BOARD, (0, 0, 0), message_rect)
-    #pygame.draw.rect(BOARD, (0,0,0), (x, y, square_size, square_size))
+    BOARD.fill((bg_color))
     pygame.display.flip()
+    createBoard()
+    #pygame.draw.rect(BOARD, (0, 0, 0), message_rect)
+    #pygame.draw.rect(BOARD, (0,0,0), (x, y, square_size, square_size))
+    #pygame.display.flip()
 #def userClicks():
     #run this function after showing the message to prompt the user to click 
     #use chatGPT to figure out how to record a click
