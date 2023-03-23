@@ -8,6 +8,7 @@ import pygame
 #since these are constant variables 
 #I'm capitalizing them
 pygame.init()
+
 WIDTH, HEIGHT= 400, 400 
 FONT= 0
 BOARD = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -19,6 +20,7 @@ bg_color = (255, 255, 255)
 BOARD.fill(bg_color)
 
 #create the grid
+
 for row in range(3):
     for col in range(3):
         x= col * (square_size+spacing)
@@ -26,8 +28,8 @@ for row in range(3):
 
         #now drawing the square 
         pygame.draw.rect(BOARD, (0,0,0), (x, y, square_size, square_size))
-
-pygame.display.update()
+        pygame.display.update()
+#pygame.display.update()
 #creating the images
 xImage= pygame.image.load('x.png')
 oImage = pygame.image.load('o.png')
@@ -84,12 +86,14 @@ def userTurn():
     message_rect.center = (WIDTH //2 , HEIGHT//2)
     BOARD.blit(message_surface, message_rect)
     pygame.display.flip()
-
-    while True: 
+    waiting= True
+    while waiting: 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pygame.quit()
-                exit()
+                waiting= False
+    pygame.draw.rect(BOARD, (0, 0, 0), message_rect)
+    #pygame.draw.rect(BOARD, (0,0,0), (x, y, square_size, square_size))
+    pygame.display.flip()
 #def userClicks():
     #run this function after showing the message to prompt the user to click 
     #use chatGPT to figure out how to record a click
