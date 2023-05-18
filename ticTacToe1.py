@@ -32,10 +32,6 @@ def createBoard():
 #pygame.display.update()
 #creating the images
 
-
-
-
-
 def main():
 
     run = True 
@@ -61,7 +57,7 @@ def chooseSymbol():
     #ask the user to pick either x or o 
     USERSYMBOL = input("if you would like to be X please respond X, otherwise respond O:  ")
     if USERSYMBOL == 'x':
-        return xImage
+        print(xImage)
     else: 
         return oImage
 
@@ -103,7 +99,7 @@ def promptUserTurn():
     #now I need to figure out where the user clicks
 
 def userTurn():
-#there are 9 possibel coordinate areas for a user to click on(each box)
+#there are 9 possible coordinate areas for a user to click on(each box)
 #each box has a width of 
     USERSYMBOL = chooseSymbol()
     run= True
@@ -128,18 +124,33 @@ def userTurn():
                     #xImage= pygame.transform.scale(xImage, (133,133))
                     BOARD.blit(USERSYMBOL, (138.33,0))
                     pygame.display.flip()
-           
-
-
-
-        
+                elif pos < (414.99, 138.33):    
+                    print("it executed")
+                    xImage= pygame.image.load('x.png')
+                    xImage= pygame.transform.scale(xImage, (133,133))
+                    BOARD.blit(xImage, (0,0))
+                    pygame.display.flip()
+                elif pos < (138.33, 276.66):
+                    print("it executed")
+                    xImage= pygame.image.load('x.png')
+                    xImage= pygame.transform.scale(xImage, (133,133))
+                    BOARD.blit(xImage, (0,0))
+                    pygame.display.flip()
+                elif pos < (138.33, 414.99):    
+                    print("it executed")
+                    xImage= pygame.image.load('x.png')
+                    xImage= pygame.transform.scale(xImage, (133,133))
+                    BOARD.blit(xImage, (0,0))
+                    pygame.display.flip()
+                #need to finish up the rest of the elif statements
 
 #pos keeps track of where the user clicked. If it is first quadrant it will be less than 
 #each square has a width of 138.33 so that tells you which quadrant it is in. 
 
 createBoard()
+chooseSymbol()
 promptUserTurn()
-userTurn()
+
 
 if __name__ == "__main__":
     main()
