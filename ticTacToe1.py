@@ -57,9 +57,11 @@ def chooseSymbol():
     #ask the user to pick either x or o 
     USERSYMBOL = input("if you would like to be X please respond X, otherwise respond O:  ")
     if USERSYMBOL == 'x':
-        print(xImage)
+        USERSYMBOL = xImage
     else: 
-        return oImage
+        USERSYMBOL= oImage
+    return USERSYMBOL
+    
 
     #what is the condition for a user to be X or a user to be O? 
     #each time they click on the board then you would fill the board with whatever they picked
@@ -116,7 +118,7 @@ def userTurn():
                     print("it executed")
                     xImage= pygame.image.load('x.png')
                     xImage= pygame.transform.scale(xImage, (133,133))
-                    BOARD.blit(xImage, (0,0))
+                    BOARD.blit(USERSYMBOL, (0,0))
                     pygame.display.flip()
                 elif pos < (276.66, 138.33):
                     print("it executed")
@@ -126,21 +128,15 @@ def userTurn():
                     pygame.display.flip()
                 elif pos < (414.99, 138.33):    
                     print("it executed")
-                    xImage= pygame.image.load('x.png')
-                    xImage= pygame.transform.scale(xImage, (133,133))
-                    BOARD.blit(xImage, (0,0))
+                    BOARD.blit(USERSYMBOL, (0,0))
                     pygame.display.flip()
                 elif pos < (138.33, 276.66):
                     print("it executed")
-                    xImage= pygame.image.load('x.png')
-                    xImage= pygame.transform.scale(xImage, (133,133))
-                    BOARD.blit(xImage, (0,0))
+                    BOARD.blit(USERSYMBOL, (0,0))
                     pygame.display.flip()
                 elif pos < (138.33, 414.99):    
                     print("it executed")
-                    xImage= pygame.image.load('x.png')
-                    xImage= pygame.transform.scale(xImage, (133,133))
-                    BOARD.blit(xImage, (0,0))
+                    BOARD.blit(USERSYMBOL, (0,0))
                     pygame.display.flip()
                 #need to finish up the rest of the elif statements
 
@@ -150,6 +146,7 @@ def userTurn():
 createBoard()
 chooseSymbol()
 promptUserTurn()
+userTurn()
 
 
 if __name__ == "__main__":
