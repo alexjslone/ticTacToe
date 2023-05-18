@@ -112,40 +112,57 @@ def userTurn():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # Get the position where the mouse was clicked
                 pos = pygame.mouse.get_pos()
+                x = pos[0]
+                y = pos[1]
                 print("Clicked at:", pos)
                 #now 9 if else conditions for the square clicked on
-                if pos < (138.33, 138.33):
-                    print("it executed")
+                if x < 138.33 and y < 138.33:
                     xImage= pygame.image.load('x.png')
                     xImage= pygame.transform.scale(xImage, (133,133))
                     BOARD.blit(USERSYMBOL, (0,0))
                     pygame.display.flip()
-                elif pos < (276.66, 138.33):
-                    print("it executed")
+                    print("triggered 1")
+                elif x < 276.66 and y < 138.33:
                     #xImage= pygame.image.load('x.png')
                     #xImage= pygame.transform.scale(xImage, (133,133))
                     BOARD.blit(USERSYMBOL, (138.33,0))
                     pygame.display.flip()
-                elif pos < (414.99, 138.33):    
-                    print("it executed")
-                    BOARD.blit(USERSYMBOL, (0,0))
+                    print("triggered 2")
+                elif x < 414.99 and y < 138.33:    
+                    BOARD.blit(USERSYMBOL, (276.66,0))
                     pygame.display.flip()
-                elif pos < (138.33, 276.66):
-                    print("it executed")
-                    BOARD.blit(USERSYMBOL, (0,0))
+                    print("triggered 3")
+                elif x < 138.33 and y < 276.66:
+                    BOARD.blit(USERSYMBOL, (0,138.33))
                     pygame.display.flip()
-                elif pos < (138.33, 414.99):    
-                    print("it executed")
-                    BOARD.blit(USERSYMBOL, (0,0))
+                    print("triggered 4")
+                elif x < 276.66 and y < 276.66:    
+                    BOARD.blit(USERSYMBOL, (138.33,138.33))
                     pygame.display.flip()
+                    print("triggered 5")
+                elif x < 414.99 and y < 276.66:    
+                    BOARD.blit(USERSYMBOL, (276.66, 138.33))
+                    pygame.display.flip()
+                    print("triggered 6")
+                elif x < 138.33 and y < 414.99:    
+                    BOARD.blit(USERSYMBOL, (0, 276.66))
+                    pygame.display.flip()
+                    print("triggered 7")
+                elif x < 276.66 and y < 414.99:    
+                    BOARD.blit(USERSYMBOL, (138.33, 276.66))
+                    pygame.display.flip()
+                    print("triggered 8")
+                elif x < 414.99 and y < 414.99:    
+                    BOARD.blit(USERSYMBOL, (276.66, 276.66))
+                    pygame.display.flip()
+                    print("triggered 9")
                 #need to finish up the rest of the elif statements
 
 #pos keeps track of where the user clicked. If it is first quadrant it will be less than 
 #each square has a width of 138.33 so that tells you which quadrant it is in. 
 
 createBoard()
-chooseSymbol()
-promptUserTurn()
+#promptUserTurn()
 userTurn()
 
 
