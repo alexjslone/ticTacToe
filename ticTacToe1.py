@@ -1,5 +1,9 @@
 import pygame
-#where I left off. Working on the bug that I got when I tried to run 
+#where I left off. 
+#Need to figure out how to quit the user turn so then it 
+#goes to the computer turn
+
+
 #the font portion of the userTurn function
 #Need to figure out that bug and then check to make sure it properly shows the message
 #When someone clicks they need to remove the message.
@@ -16,6 +20,9 @@ pygame.display.set_caption("Tic Tac Toe")
 square_size = 133.33
 spacing = 5
 
+moveList = [0] * 9
+dictionary1 = {"0" : (0,0), "1" : (138.33, 0)
+}
 bg_color = (255, 255, 255)
 BOARD.fill(bg_color)
 
@@ -121,13 +128,16 @@ def userTurn():
                     xImage= pygame.transform.scale(xImage, (133,133))
                     BOARD.blit(USERSYMBOL, (0,0))
                     pygame.display.flip()
+                    moveList[0]= 'U'
                     print("triggered 1")
+                    pygame.QUIT
                 elif x < 276.66 and y < 138.33:
                     #xImage= pygame.image.load('x.png')
                     #xImage= pygame.transform.scale(xImage, (133,133))
                     BOARD.blit(USERSYMBOL, (138.33,0))
                     pygame.display.flip()
                     print("triggered 2")
+                    moveList[1]= 'U'
                 elif x < 414.99 and y < 138.33:    
                     BOARD.blit(USERSYMBOL, (276.66,0))
                     pygame.display.flip()
@@ -157,6 +167,21 @@ def userTurn():
                     pygame.display.flip()
                     print("triggered 9")
                 #need to finish up the rest of the elif statements
+def computerTurn1():
+    #this function is responsible for the computer turn where it will determine the best 
+    #or most optimal move for the computer
+    for i in moveList: 
+        if i != 'U':
+            loc1 = moveList.index(i)
+    oImage = pygame.image.load('o.png')
+    oImage = pygame.transform.scale(oImage, (133, 133))
+    BOARD.blit(oImage, (dictionary1["loc1"]))
+    pygame.display.flip()
+    
+    #now the challenge I'm facing is how do i translate a 0-8 location 
+    # to coordinates
+    #put it into a dictionary? 
+
 
 #pos keeps track of where the user clicked. If it is first quadrant it will be less than 
 #each square has a width of 138.33 so that tells you which quadrant it is in. 
@@ -164,7 +189,7 @@ def userTurn():
 createBoard()
 #promptUserTurn()
 userTurn()
-
+computerTurn1()
 
 if __name__ == "__main__":
     main()
