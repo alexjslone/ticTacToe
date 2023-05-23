@@ -21,7 +21,9 @@ square_size = 133.33
 spacing = 5
 
 moveList = [0] * 9
-dictionary1 = {"0" : (0,0), "1" : (138.33, 0)
+dictionary1 = {"0" : (0,0), "1" : (138.33, 0), "2": (276.66,0),
+"3": (0, 138.33), "4" : (138.33, 138.33), "5" : (276.66, 138.33),
+"6" : (0, 276.66), "7": (138.33, 276.66), "8": (276.66, 276.66)
 }
 bg_color = (255, 255, 255)
 BOARD.fill(bg_color)
@@ -130,7 +132,7 @@ def userTurn():
                     pygame.display.flip()
                     moveList[0]= 'U'
                     print("triggered 1")
-                    pygame.QUIT
+                    return
                 elif x < 276.66 and y < 138.33:
                     #xImage= pygame.image.load('x.png')
                     #xImage= pygame.transform.scale(xImage, (133,133))
@@ -138,44 +140,62 @@ def userTurn():
                     pygame.display.flip()
                     print("triggered 2")
                     moveList[1]= 'U'
+                    return 
                 elif x < 414.99 and y < 138.33:    
                     BOARD.blit(USERSYMBOL, (276.66,0))
                     pygame.display.flip()
                     print("triggered 3")
+                    moveList[2]= 'U'
+                    return 
                 elif x < 138.33 and y < 276.66:
                     BOARD.blit(USERSYMBOL, (0,138.33))
                     pygame.display.flip()
                     print("triggered 4")
+                    moveList[3]= 'U'
+                    return
                 elif x < 276.66 and y < 276.66:    
                     BOARD.blit(USERSYMBOL, (138.33,138.33))
                     pygame.display.flip()
                     print("triggered 5")
+                    moveList[4]= 'U'
+                    return 
                 elif x < 414.99 and y < 276.66:    
                     BOARD.blit(USERSYMBOL, (276.66, 138.33))
                     pygame.display.flip()
                     print("triggered 6")
+                    moveList[5]= 'U'
+                    return 
                 elif x < 138.33 and y < 414.99:    
                     BOARD.blit(USERSYMBOL, (0, 276.66))
                     pygame.display.flip()
                     print("triggered 7")
+                    moveList[6]= 'U'
+                    return 
                 elif x < 276.66 and y < 414.99:    
                     BOARD.blit(USERSYMBOL, (138.33, 276.66))
                     pygame.display.flip()
                     print("triggered 8")
+                    moveList[7]= 'U'
+                    return 
                 elif x < 414.99 and y < 414.99:    
                     BOARD.blit(USERSYMBOL, (276.66, 276.66))
                     pygame.display.flip()
                     print("triggered 9")
+                    moveList[8]= 'U'
+                    return
                 #need to finish up the rest of the elif statements
 def computerTurn1():
     #this function is responsible for the computer turn where it will determine the best 
     #or most optimal move for the computer
-    for i in moveList: 
-        if i != 'U':
-            loc1 = moveList.index(i)
+    #first move from the computer it can pick anywhere on the board
+    #for i in moveList: 
+    #    if i != 'U':
+    #        loc1 = moveList.index(i)
+    #        break
     oImage = pygame.image.load('o.png')
     oImage = pygame.transform.scale(oImage, (133, 133))
-    BOARD.blit(oImage, (dictionary1["loc1"]))
+    loc1 = '4'
+    BOARD.blit(oImage, (dictionary1[str(loc1)]))
     pygame.display.flip()
     
     #now the challenge I'm facing is how do i translate a 0-8 location 
@@ -186,10 +206,29 @@ def computerTurn1():
 #pos keeps track of where the user clicked. If it is first quadrant it will be less than 
 #each square has a width of 138.33 so that tells you which quadrant it is in. 
 
+def computerTurn2():
+    #now in this case the computer needs to first check if the other person has two in a row
+    for i in moveList: 
+        if i == 'U':
+            loc1 = moveList.index(i)
+            if moveList[loc1+1]== 'U' and moveList[loc1+2]!='U':
+                oImage = pygame.image.load('o.png')
+                oImage = pygame.transform.scale(oImage, (133, 133))
+                BOARD.blit(oImage, (dictionary1[str(loc1+2)]))
+                pygame.display.flip()
+
+            
+
+ #this function is responsible for the computer turn where it will determine the best 
+    #or most optimal move for the computer
+
+
 createBoard()
-#promptUserTurn()
+promptUserTurn()
 userTurn()
 computerTurn1()
+userTurn()
+computerTurn2()
 
 if __name__ == "__main__":
     main()
