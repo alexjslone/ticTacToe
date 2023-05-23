@@ -211,13 +211,49 @@ def computerTurn2():
     for i in moveList: 
         if i == 'U':
             loc1 = moveList.index(i)
-            if moveList[loc1+1]== 'U' and moveList[loc1+2]!='U':
-                oImage = pygame.image.load('o.png')
-                oImage = pygame.transform.scale(oImage, (133, 133))
-                BOARD.blit(oImage, (dictionary1[str(loc1+2)]))
-                pygame.display.flip()
+            #condition for first row 
+            if loc1 < 3:
+                #first check down
+                if moveList[loc1+3]== 'U' and moveList[loc1+6]!='U':
+                    oImage = pygame.image.load('o.png')
+                    oImage = pygame.transform.scale(oImage, (133, 133))
+                    BOARD.blit(oImage, (dictionary1[str(loc1+6)]))
+                    pygame.display.flip()
+                #diagonal condition
+                elif loc1 == 0 and moveList[loc1+4] == 'U' and moveList[loc1+8] != 'U':
+                    oImage = pygame.image.load('o.png')
+                    oImage = pygame.transform.scale(oImage, (133, 133))
+                    BOARD.blit(oImage, (dictionary1[str(loc1+6)]))
+                    pygame.display.flip()
+                elif loc1 == 2 and moveList[loc1+2] == 'U' and moveList[loc1+4] != 'U':
+                    oImage = pygame.image.load('o.png')
+                    oImage = pygame.transform.scale(oImage, (133, 133))
+                    BOARD.blit(oImage, (dictionary1[str(loc1+4)]))
+                    pygame.display.flip()
+                elif loc1 == 0: 
+                    if moveList[loc1+4]== 'U' and moveList[loc1+8] != 'U':
+                        oImage = pygame.image.load('o.png')
+                        oImage = pygame.transform.scale(oImage, (133, 133))
+                        BOARD.blit(oImage, (dictionary1[str(loc1+8)]))
+                        pygame.display.flip()
+                #now solve for horizontal 
+                elif loc1 ==0 and moveList[loc1+1] == 'U' and moveList[loc1+2] != 'U':
+                        oImage = pygame.image.load('o.png')
+                        oImage = pygame.transform.scale(oImage, (133, 133))
+                        BOARD.blit(oImage, (dictionary1[str(loc1+2)]))
+                        pygame.display.flip()
+                elif loc1 == 1 and moveList[loc1+1] == 'U' and moveList[loc1-1] != 'U':
+                        oImage = pygame.image.load('o.png')
+                        oImage = pygame.transform.scale(oImage, (133, 133))
+                        BOARD.blit(oImage, (dictionary1[str(loc1-1)]))
+                        pygame.display.flip()
+                elif loc1 == 2 and moveList[loc1-1] == 'U' and moveList[loc1-2] != 'U':
+                        oImage = pygame.image.load('o.png')
+                        oImage = pygame.transform.scale(oImage, (133, 133))
+                        BOARD.blit(oImage, (dictionary1[str(loc1-)]))
+                        pygame.display.flip()
+                #elif moveList[loc1+3] and moveList[loc1+6]:
 
-            
 
  #this function is responsible for the computer turn where it will determine the best 
     #or most optimal move for the computer
